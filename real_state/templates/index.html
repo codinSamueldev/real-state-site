@@ -1,12 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real State</title>
-</head>
-<body>
-    <h1>Holiiii</h1>
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}Principal{% endblock %}
+
+{% block content %}
     
-</body>
-</html>
+    {% include 'partials/hero.html' %}
+
+    {% include 'partials/marquee.html' %}
+
+    {% include 'partials/about_features.html' %}
+
+    {% include 'partials/services.html' %}
+
+    {% include 'partials/latest_properties.html' %}
+    
+{% endblock %}
