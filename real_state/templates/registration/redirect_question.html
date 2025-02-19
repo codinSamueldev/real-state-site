@@ -1,0 +1,17 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}Home-Buyer or Realtor/Agent?{% endblock %}
+
+{% block content %}
+
+<h2>Are you a home-buyer or Realtor/Agent?</h2>
+<a href="{% url 'home-buyer' %}" target="_self" rel="noopener noreferrer">
+    <div>Home-Buyer :D</div>
+</a>
+
+<a href="{% url 'realtor' %}" target="_self" rel="noopener noreferrer">
+    <div>Realtor [Moneyyyy]</div>
+</a>
+
+{% endblock %}
