@@ -2,13 +2,17 @@
 <!-- Header -->
 <header class="header">
     <div class="container header-content">
-        <img src="{% static 'real_state_staticss/real_state_logo.png' %}" alt="Logo" class="logo">
+        <a href="{% url 'home' %}" target="_self" rel="noopener noreferrer">
+            <img src="{% static 'real_state_staticss/real_state_logo.png' %}" alt="Logo" class="logo">
+        </a>
         <nav>
             <ul class="nav-links">
-                <li><a href="#">HOME</a></li>
+                <li><a href="{% url 'home' %}">HOME</a></li>
                 <li><a href="#">LISTING</a></li>
                 <li><a href="#">AGENTS</a></li>
                 <li><a href="#">CONTACT</a></li>
+                <li><a href="#">LOGIN</a></li>
+                <li><a href="{% url 'redirect_question' %}" target="_self">SIGN-UP</a></li>
             </ul>
         </nav>
         <div class="header-actions">

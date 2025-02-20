@@ -3,10 +3,10 @@
 
 {% block title %}Realtor/Agent registration{% endblock %}
 
+{% block styles %}
+    {% include 'registration/registration_styles.html' %}
+{% endblock %}
+
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
-</form>
+    {% include 'registration/registration_form.html' %}
 {% endblock %}

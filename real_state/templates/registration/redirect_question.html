@@ -3,15 +3,156 @@
 
 {% block title %}Home-Buyer or Realtor/Agent?{% endblock %}
 
+{% block styles %}
+<style>
+    .container {
+        max-width: 1200px;
+        width: 100%;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+        color: #1B2534;
+        margin-bottom: 2rem;
+        font-weight: 600;
+    }
+
+    .user-text-color{color: rgb(144, 238, 144);}
+    .realtor-text-color{color: rgb(99, 99, 255);}
+
+    .cards-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 1rem;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .card {
+        background: white;
+        border-radius: 20px;
+        padding: 3rem 2rem;
+        text-decoration: none;
+        color: #1B2534;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        cursor: pointer;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        border-color: #006D77;
+        box-shadow: 0 20px 40px rgba(0, 109, 119, 0.1);
+    }
+
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: #006D77;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .icon {
+        width: 80px;
+        height: 80px;
+        background: #f0f7f8;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: #006D77;
+        transition: all 0.3s ease;
+    }
+
+    .card:hover .icon {
+        background: #006D77;
+        color: white;
+    }
+
+    .card h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .card p {
+        color: #666;
+        line-height: 1.6;
+        font-size: 1rem;
+        max-width: 280px;
+    }
+
+    .arrow {
+        margin-top: 1rem;
+        font-size: 1.5rem;
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: all 0.3s ease;
+    }
+
+    .card:hover .arrow {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    @media (max-width: 768px) {
+        .cards-container {
+            grid-template-columns: 1fr;
+            padding: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            padding: 0 1rem;
+        }
+
+        .card {
+            padding: 2rem 1.5rem;
+        }
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 
-<h2>Are you a home-buyer or Realtor/Agent?</h2>
-<a href="{% url 'home-buyer' %}" target="_self" rel="noopener noreferrer">
-    <div>Home-Buyer :D</div>
-</a>
-
-<a href="{% url 'realtor' %}" target="_self" rel="noopener noreferrer">
-    <div>Realtor [Moneyyyy]</div>
-</a>
+<div class="container">
+    <h2>Are you a <span class="user-text-color">home-buyer</span> or <span class="realtor-text-color">Realtor/Agent</span>?</h2>
+    <div class="cards-container">
+        <a href="{% url 'home-buyer' %}" class="card">
+            <div class="icon">🏠</div>
+            <div class="content">
+                <h3>Home Buyer</h3>
+                <p>Find your dream home with our extensive listings and personalized search tools.</p>
+            </div>
+            <span class="arrow">→</span>
+        </a>
+        <a href="{% url 'realtor' %}" class="card">
+            <div class="icon">👔</div>
+            <div class="content">
+                <h3>Realtor/Agent</h3>
+                <p>List properties, manage clients, and grow your real estate business with our tools.</p>
+            </div>
+            <span class="arrow">→</span>
+        </a>
+    </div>
+</div>
 
 {% endblock %}

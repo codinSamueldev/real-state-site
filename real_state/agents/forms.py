@@ -5,9 +5,12 @@ from django.core.exceptions import ValidationError
 from django.db import transaction
 from .models import UserProfile, RealtorProfile
 
+from phonenumber_field.formfields import SplitPhoneNumberField
+
 class UserRegistrationForm(UserCreationForm):
+    first_name = forms.CharField(required=True, min_length=2)
     email = forms.EmailField(required=True)
-    phone_number = forms.CharField(max_length=15, required=True)
+    phone_number = SplitPhoneNumberField()
     address = forms.CharField(widget=forms.Textarea(attrs={'rows': 3}), required=True)
     
     class Meta:
