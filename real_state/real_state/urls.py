@@ -25,7 +25,8 @@ from agents import views as AgentsViews
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', LandingViews.home, name="home"),
-    path('sign-up/', include("agents.urls"), name="sign-up")
+    path('sign-up/', include("agents.urls")),
+    path('login/', include("login.urls")),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

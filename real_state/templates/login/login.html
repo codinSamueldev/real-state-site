@@ -1,0 +1,178 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}Log-in{% endblock %}
+
+{% block styles %}
+<style>
+    .login-container {
+        margin: 0 auto;
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .login-header {
+        text-align: center;
+        margin-bottom: 32px;
+    }
+
+    .login-header h1 {
+        color: #1B2534;
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .login-header p {
+        color: #666;
+        font-size: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 24px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #1B2534;
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 15px;
+        transition: all 0.2s ease;
+        outline: none;
+    }
+
+    .form-group input:focus {
+        border-color: #006D77;
+        box-shadow: 0 0 0 3px rgba(0, 109, 119, 0.1);
+    }
+
+    .form-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+    }
+
+    .forgot-password {
+        color: #006D77;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.2s ease;
+    }
+
+    .forgot-password:hover {
+        color: #005a63;
+    }
+
+    .login-button {
+        width: 100%;
+        padding: 12px;
+        background: #006D77;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .login-button:hover {
+        background: #005a63;
+        transform: translateY(-1px);
+    }
+
+    .login-button:active {
+        transform: translateY(0);
+    }
+
+    .signup-prompt {
+        margin-top: 24px;
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+    }
+
+    .signup-prompt a {
+        color: #006D77;
+        text-decoration: none;
+        font-weight: 500;
+        margin-left: 4px;
+    }
+
+    .signup-prompt a:hover {
+        color: #005a63;
+    }
+
+    @media (max-width: 480px) {
+        .login-container {
+            padding: 24px;
+        }
+
+        .form-footer {
+            flex-direction: column;
+            gap: 16px;
+            align-items: flex-start;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-header">
+        <h1>Welcome back</h1>
+        <p>Please enter your details to log in</p>
+    </div>
+    
+    <form action="." method="post" autocomplete="on">
+        {% csrf_token %}
+        {{ err_msg }}
+        <div class="form-group">
+            <label for="email">Email</label>
+            {{form.email}}
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            {{form.password}}
+        </div>
+
+        <div class="form-footer">
+            <a href="/forgot-password" class="forgot-password">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="login-button">Sign in</button>
+    </form>
+
+    <div class="signup-prompt">
+        Don't have an account?<a href="{% url 'redirect_question' %}">Sign up</a>
+    </div>
+</div>
+{% endblock %}

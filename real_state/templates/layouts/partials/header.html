@@ -11,8 +11,12 @@
                 <li><a href="#">LISTING</a></li>
                 <li><a href="#">AGENTS</a></li>
                 <li><a href="#">CONTACT</a></li>
-                <li><a href="#">LOGIN</a></li>
-                <li><a href="{% url 'redirect_question' %}" target="_self">SIGN-UP</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}" target="_self">LOGIN</a></li>
+                    <li><a href="{% url 'redirect_question' %}" target="_self">SIGN-UP</a></li>
+                {% endif %}
             </ul>
         </nav>
         <div class="header-actions">
