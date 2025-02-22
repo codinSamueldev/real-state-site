@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'landing',
     'agents',
     'login',
+    'listing',
 ]
 
 MIDDLEWARE = [

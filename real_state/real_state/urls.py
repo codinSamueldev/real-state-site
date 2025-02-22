@@ -28,6 +28,7 @@ urlpatterns = [
     path('', LandingViews.home, name="home"),
     path('sign-up/', include("agents.urls")),
     path('login/', include("login.urls")),
+    path('listing/', include("listing.urls")),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
