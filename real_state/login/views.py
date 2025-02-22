@@ -4,6 +4,10 @@ from django.contrib.auth.models import User
 from .forms import EmailLoginForm
 
 def user_login(request):
+    if request.user.is_authenticated:
+        return redirect('listing')
+
+
     if request.method == 'POST':
         form = EmailLoginForm(request.POST)
         if form.is_valid():
