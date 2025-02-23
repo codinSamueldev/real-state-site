@@ -12,7 +12,7 @@ class UserProfile(models.Model):
         return f"{self.user.username}'s profile"
 
 class RealtorProfile(models.Model):
-    user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE) # RealtorProfile should include basic info + additional ones.
     agency_name = models.CharField(max_length=100)
     license_number = models.CharField(max_length=50, unique=True)
     years_of_experience = models.PositiveIntegerField(default=0)

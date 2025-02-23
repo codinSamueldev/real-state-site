@@ -10,7 +10,7 @@ from phonenumber_field.formfields import SplitPhoneNumberField
 class UserRegistrationForm(UserCreationForm):
     first_name = forms.CharField(required=True, min_length=2)
     email = forms.EmailField(required=True)
-    phone_number = SplitPhoneNumberField()
+    phone_number = SplitPhoneNumberField() #Django library for better storing phone numbers. 
     address = forms.CharField(widget=forms.Textarea(attrs={'rows': 3}), required=True)
     
     class Meta:
@@ -40,8 +40,8 @@ class UserRegistrationForm(UserCreationForm):
         user.address = self.cleaned_data['address']
 
         if commit:
-            user.save()
-            user_profile = UserProfile.objects.create(user=user)
+            user.save() # Save in-storage the User instance.
+            user_profile = UserProfile.objects.create(user=user) # Create and store User in DB.
             user_profile.save()
             
         return user
@@ -72,6 +72,11 @@ class RealtorRegistrationForm(UserCreationForm):
     
     @transaction.atomic
     def save(self, commit=True):
+        """
+            Since RealtorProfile basic info is linked with UserProfile model.
+            It is required to save and store first that basic info (name, email, phone_number etc.),
+            Then, create and store the realtor profile.
+        """
         user = super().save(commit=False)
         user.email = self.cleaned_data['email']
         

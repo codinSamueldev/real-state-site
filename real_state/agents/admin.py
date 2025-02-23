@@ -5,7 +5,7 @@ from .models import UserProfile, RealtorProfile
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'phone_number', 'is_realtor')
     list_filter = ('is_realtor',)
-    search_fields = ('user__username', 'user__email', 'phone_number')
+    search_fields = ('user__username', 'user__email', 'phone_number') # Valid fields to query DB in the Admin site search bar 
 
 @admin.register(RealtorProfile)
 class RealtorProfileAdmin(admin.ModelAdmin):
