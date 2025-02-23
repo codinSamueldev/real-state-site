@@ -6,6 +6,9 @@ class Properties(models.Model):
     title = models.TextField(max_length=255, blank=False, null=False, verbose_name="Title")
     description = models.TextField(max_length=255, verbose_name="Description")
     price = models.DecimalField(max_digits=10, decimal_places=2, blank=False, null=False, validators=[MinValueValidator(10000, message="Starting prices for properties must start at $10,000.")], verbose_name="Price") # Minimum price is $10,000 and max price up to $99,000,000.00
+    country = models.TextField(max_length=125, blank=True, null=True, verbose_name="Country")
+    city = models.TextField(max_length=125, blank=True, null=True, verbose_name="City")
+    state = models.TextField(max_length=125, blank=True, null=True, verbose_name="State/Departamento")
     location = models.TextField(max_length=1000, blank=False, null=False, verbose_name="Location/Address")
     property_type = models.TextField(max_length=255, blank=False, null=False, verbose_name="Type of property (Condo, House, Apartment...)")
     bedrooms = models.PositiveSmallIntegerField(verbose_name="Bedrooms") # Values from 0 to 32767.
