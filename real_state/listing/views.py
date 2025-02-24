@@ -6,7 +6,8 @@ from landing.models import Properties
 # Create your views here.
 def properties_listing(request):
     query = Q()
-
+    
+    # Get user-input values from search bar
     country = request.GET.get('country', None)
     city = request.GET.get('city', None)
     property_type = request.GET.get('property_type', None)
@@ -29,12 +30,14 @@ def properties_listing(request):
         query &= Q(price__lte=float(max_price))
 
     
+    # If user uses search fields, then return properties based on the query. Else, just list them all out.
     if query.children:
         properties = Properties.objects.filter(query)
     else:
         properties = Properties.objects.all()
 
     
+    # Country field should include non-repeated countries. 
     countries = Properties.objects.order_by().values('country').distinct()
 
 

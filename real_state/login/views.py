@@ -4,6 +4,13 @@ from django.contrib.auth.models import User
 from .forms import EmailLoginForm
 
 def user_login(request):
+    """
+        Login view for current-existing users.
+        If the HTTP is a POST: then handle authentication flow.
+        Else: Just output login form.
+    """
+    
+    # If user is already logged-in, should not be able to access again login view.
     if request.user.is_authenticated:
         return redirect('listing')
 
@@ -18,7 +25,7 @@ def user_login(request):
             try:
                 user = User.objects.get(email=email)
                 # Now authenticate with username
-                user = authenticate(username=user.username, password=password)
+                user = authenticate(username=user.username, password=password) # authenticate method validates just with username + password, not by email.
                 if user is not None:
                     auth_login(request, user)
                     return redirect('home')
@@ -33,6 +40,13 @@ def user_login(request):
 
 
 def user_logout(request):
+    """ 
+        If user is not authenticated, should not be able to access to logout view. 
+        Else, logout user.
+    """
+    if request.user.is_anonymous:
+        return redirect('login')
+    
     logout(request)
 
     return redirect("home")
