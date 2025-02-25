@@ -4,5 +4,6 @@ Django==5.0
 django-phonenumber-field==8.0.0
 phonenumbers==8.13.55
 pillow==11.1.0
+python-dotenv==1.0.1
 sqlparse==0.5.3
 typing_extensions==4.12.2

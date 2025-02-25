@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
+
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)=xl*_=ze#kd380r6z*#q*$37r(zi526-mtx%+s2%%awa!x)kh'
+load_dotenv()
+SECRET_KEY = os.getenv("SECRET_KEY")
+EMAIL_PASSWORD = os.getenv("HOST_PASSWORD")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,6 +47,7 @@ INSTALLED_APPS = [
     'agents',
     'login',
     'listing',
+    'contact',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +59,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']
 
 ROOT_URLCONF = 'real_state.urls'
 
@@ -138,3 +146,13 @@ MEDIA_URL = '/properties_pics/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Simple Mail Transfer Protocol (SMTP) with Zoho.
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'baldguy849@gmail.com'
+EMAIL_HOST_PASSWORD = EMAIL_PASSWORD
+

@@ -10,7 +10,7 @@
                 <li><a href="{% url 'home' %}">HOME</a></li>
                 <li><a href="{% url 'listing' %}">LISTING</a></li>
                 <li><a href="#">AGENTS</a></li>
-                <li><a href="#">CONTACT</a></li>
+                <li><a href="{% url 'contact' %}">CONTACT</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'logout' %}">LOGOUT</a></li>
                 {% else %}
