@@ -1,0 +1,261 @@
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.contact-header h1 {
+    font-size: 2.5rem;
+    color: #1B2534;
+    margin-bottom: 16px;
+}
+
+.contact-header p {
+    color: #666;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form {
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style the figure and image for logged-in users */
+.contact-form figure {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.contact-form figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Optional: Add hover effect on the image */
+.contact-form figure:hover img {
+    transform: scale(1.03);
+}
+
+/* When user is anonymous, form takes full height */
+.contact-form form {
+    height: 100%;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #1B2534;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #006D77;
+    box-shadow: 0 0 0 3px rgba(0, 109, 119, 0.1);
+}
+
+textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background: #006D77;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background: #005a63;
+    transform: translateY(-2px);
+}
+
+.contact-info {
+    background: #006D77;
+    color: white;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+}
+
+.info-header {
+    margin-bottom: 32px;
+    position: relative;
+}
+
+.info-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.info-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.info-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+
+.info-content p {
+    opacity: 0.9;
+    font-size: 0.95rem;
+}
+
+.business-hours {
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hours-list {
+    list-style: none;
+    margin-top: 16px;
+}
+
+.hours-list li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-header h1 {
+        font-size: 2rem;
+    }
+
+    .contact-form figure {
+        margin-top: 24px;
+        height: 300px; /* Fixed height on mobile */
+    }
+
+    .contact-form,
+    .contact-info {
+        padding: 32px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation for the image */
+@keyframes fadeScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.contact-form figure {
+    animation: fadeScale 0.5s ease-out;
+}
+
+.contact-form figure:hover::after {
+    opacity: 1;
+}
+
+.contact-wrapper {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.contact-form-logged-in {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    align-items: center;
+}
+
+.contact-message {
+    padding: 24px;
+}
+
+.contact-message textarea {
+    height: 200px;
+}
