@@ -322,12 +322,12 @@
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <input type="text" name="subject" id="subject" class="form-control" required>
+                            <input type="text" name="subject" id="subject" placeholder="e.g. Buying process" class="form-control" required>
                         </div>
                         <textarea
                             name="message"
                             class="form-control" 
-                            placeholder="How can we help you today?"
+                            placeholder="Leave us your message here!"
                             required></textarea>
                         <button type="submit" class="submit-btn">Send Message</button>
                     </form>
