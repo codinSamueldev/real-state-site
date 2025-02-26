@@ -1,0 +1,17 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'real_state_staticss/css/add_listing.css' %}">
+{% endblock %}
+
+{% block title %}Add to listing{% endblock %}
+
+{% block content %}
+<div class="error-container">
+    <h1 class="error-code">:0</h1>
+    <h2 class="error-title">Oops! We're still working on it</h2>
+    <p class="error-message">The page you are looking for is still on construction.</p>
+    <a href="{% url 'home' %}" class="back-home">Back to Home</a>
+</div>
+{% endblock %}

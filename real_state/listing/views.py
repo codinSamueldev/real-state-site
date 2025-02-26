@@ -56,3 +56,6 @@ def properties_listing(request):
     return render(request, 'listing/listing.html', context)
 
 
+def add_listing(request):
+    return render(request, 'listing/add_listing.html', {})
+

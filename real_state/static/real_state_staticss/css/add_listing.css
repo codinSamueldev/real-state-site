@@ -1,0 +1,72 @@
+/* Add-Listing styles */
+.error-container {
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.error-code {
+    font-size: 120px;
+    font-weight: 700;
+    color: #1B2534;
+    line-height: 1;
+    margin-bottom: 24px;
+    letter-spacing: -4px;
+}
+
+.error-title {
+    font-size: 28px;
+    color: #1B2534;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.error-message {
+    color: #666;
+    margin-bottom: 32px;
+    font-size: 16px;
+}
+
+.back-home {
+    display: inline-block;
+    background-color: #006D77;
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.back-home:hover {
+    background-color: #005a63;
+    transform: translateY(-2px);
+}
+
+.back-home:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+    .error-code {
+        font-size: 100px;
+    }
+
+    .error-title {
+        font-size: 24px;
+    }
+
+    .error-message {
+        font-size: 14px;
+    }
+}
