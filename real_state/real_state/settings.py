@@ -137,10 +137,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    "var/www/static/",
-]
+
+if DEBUG: STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+else: STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 # User-uploaded files.
