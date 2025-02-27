@@ -1,0 +1,145 @@
+<body>
+    <!-- Chat Toggle Button -->
+    <button class="chat-toggle" onclick="toggleChat()">
+        🤖
+    </button>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <div class="bot-avatar">
+                🤖
+            </div>
+            <div class="chat-header-text">
+                <h3>Dr. Charles Xavier</h3>
+                <p>Real Estate Assistant</p>
+            </div>
+            <button class="close-chat" onclick="toggleChat()">✕</button>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                Hello! I'm Dr. Charles Xavier, your Real Estate Site assistant. How can I help you today?
+            </div>
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        </div>
+
+        <div class="chat-input">
+            <input type="text" class="message-input" id="messageInput" placeholder="Type your message...">
+            <button class="send-button" id="sendButton">➤</button>
+        </div>
+    </div>
+
+    <!-- CSRF Token for Django -->
+    {% csrf_token %}
+
+    <script>
+        // Chat history array to store conversation
+        let chatHistory = [
+            {
+                sender: "bot",
+                text: "Hello! I'm Dr. Charles Xavier, your Real Estate Site assistant. How can I help you today?"
+            }
+        ];
+
+        // DOM elements
+        const chatWidget = document.getElementById('chatWidget');
+        const chatMessages = document.getElementById('chatMessages');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        const typingIndicator = document.getElementById('typingIndicator');
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        // Toggle chat widget visibility
+        function toggleChat() {
+            chatWidget.classList.toggle('active');
+            if (chatWidget.classList.contains('active')) {
+                messageInput.focus();
+                // Scroll to bottom of chat messages
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        }
+
+        // Send message function
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            // Add user message to chat
+            addMessage(message, 'user');
+            messageInput.value = '';
+
+            // Show typing indicator
+            typingIndicator.classList.add('active');
+
+            // Update chat history
+            chatHistory.push({
+                sender: "user",
+                text: message
+            });
+
+            // Send message to server
+            fetch('/chatbot/chat/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify({
+                    message: message,
+                    history: chatHistory
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hide typing indicator
+                typingIndicator.classList.remove('active');
+
+                if (data.status === 'success') {
+                    // Add bot response to chat
+                    addMessage(data.response, 'bot');
+                    
+                    // Update chat history
+                    chatHistory.push({
+                        sender: "bot",
+                        text: data.response
+                    });
+                } else {
+                    // Handle error
+                    addMessage("Sorry, I'm having trouble responding right now. Please try again.", 'bot');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                typingIndicator.classList.remove('active');
+                addMessage("Sorry, I'm having trouble connecting. Please try again later.", 'bot');
+            });
+        }
+
+        // Add message to chat UI
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.textContent = text;
+            
+            // Insert message before typing indicator
+            chatMessages.insertBefore(messageDiv, typingIndicator);
+            
+            // Scroll to bottom of chat messages
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Event listeners
+        sendButton.addEventListener('click', sendMessage);
+        
+        messageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>

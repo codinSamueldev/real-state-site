@@ -30,6 +30,7 @@ urlpatterns = [
     path('login/', include("login.urls")),
     path('listing/', include("listing.urls")),
     path('contact/', include("contact.urls")),
+    path('chatbot/', include("chatbot.urls")),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

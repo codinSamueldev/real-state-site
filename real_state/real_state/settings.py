@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'login',
     'listing',
     'contact',
+    'chatbot',
 ]
 
 MIDDLEWARE = [
