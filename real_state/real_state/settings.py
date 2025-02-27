@@ -28,10 +28,16 @@ EMAIL_PASSWORD = os.getenv("HOST_PASSWORD")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Settings for deployment.
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://real-state-site.pages.dev']
 
+SECURE_SSL_REDIRECT = True
+
+SESSION_COOKIE_SECURE = True
+
+CSRF_COOKIE_SECURE = True
 
 # Application definition
 
