@@ -451,13 +451,38 @@
 /* Typing Indicator */
 .typing-indicator {
     display: flex;
-    gap: 4px;
+    align-items: center;
+    gap: 8px;
     padding: 12px 16px;
     background: #f0f7f8;
     border-radius: 16px;
     width: fit-content;
     align-self: flex-start;
     border-bottom-left-radius: 4px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.typing-indicator.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.thinking-robot {
+    font-size: 20px;
+    animation: thinking 1s infinite;
+}
+
+.thinking-text {
+    color: #666;
+    font-size: 14px;
+    font-style: italic;
+}
+
+@keyframes thinking {
+    0%, 100% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
 }
 
 .typing-dot {
