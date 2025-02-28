@@ -29,15 +29,18 @@ EMAIL_PASSWORD = os.getenv("HOST_PASSWORD")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Settings for deployment.
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['realstatedeploy77.pythonanywhere.com']
+ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['realstatedeploy77.pythonanywhere.com']
 
+"""
 SECURE_SSL_REDIRECT = True
 
 SESSION_COOKIE_SECURE = True
 
 CSRF_COOKIE_SECURE = True
+"""
 
 # Application definition
 
