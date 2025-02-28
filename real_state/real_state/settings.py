@@ -31,7 +31,7 @@ EMAIL_PASSWORD = os.getenv("HOST_PASSWORD")
 # Settings for deployment.
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://real-state-site.pages.dev']
+ALLOWED_HOSTS = ['realstatedeploy77.pythonanywhere.com']
 
 SECURE_SSL_REDIRECT = True
 
