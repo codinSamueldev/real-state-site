@@ -22,5 +22,56 @@
         {% endblock %}
         {% include 'layouts/partials/chatbot.html' %}
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const navOverlay = document.getElementById('navOverlay');
+        const body = document.body;
+        
+        // Function to open menu
+        function openMenu() {
+            menuToggle.classList.add('active');
+            mobileNav.classList.add('active');
+            navOverlay.classList.add('active');
+            body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+        
+        // Function to close menu
+        function closeMenu() {
+            menuToggle.classList.remove('active');
+            mobileNav.classList.remove('active');
+            navOverlay.classList.remove('active');
+            body.style.overflow = '';
+        }
+        
+        // Toggle menu when menu button is clicked
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent event from bubbling
+            if (mobileNav.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+        
+        // Close menu when overlay is clicked
+        navOverlay.addEventListener('click', closeMenu);
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (mobileNav.classList.contains('active') && 
+                !mobileNav.contains(e.target) && 
+                e.target !== menuToggle) {
+                closeMenu();
+            }
+        });
+        
+        // Prevent clicks inside mobile nav from closing the menu
+        mobileNav.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    });
+    </script>
 </body>
 </html>

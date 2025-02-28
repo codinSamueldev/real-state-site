@@ -1,5 +1,4 @@
 {% load static %}
-<!-- Header -->
 <header class="header">
     <div class="container header-content">
         <a href="{% url 'home' %}" target="_self" rel="noopener noreferrer">
@@ -19,7 +18,33 @@
             </ul>
         </nav>
         <div class="header-actions">
-            <a href="{% url 'add-listing' %}" class="btn btn-primary">Add Listing</a>
+            <a href="{% url 'add-listing' %}" class="btn btn-primary desktop-only">Add Listing</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </div>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a href="{% url 'home' %}">HOME</a></li>
+            <li><a href="{% url 'listing' %}">LISTING</a></li>
+            <li><a href="{% url 'contact' %}">CONTACT</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}" target="_self">LOGIN</a></li>
+                <li><a href="{% url 'redirect_question' %}" target="_self">SIGN-UP</a></li>
+            {% endif %}
+            <li class="mobile-only">
+                <a href="{% url 'add-listing' %}" class="btn btn-primary">Add Listing</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Overlay -->
+    <div class="nav-overlay" id="navOverlay"></div>
 </header>
