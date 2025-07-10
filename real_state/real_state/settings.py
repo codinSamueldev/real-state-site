@@ -9,10 +9,10 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-import os
+import os, dj_database_url
 from pathlib import Path
 
-from dotenv import load_dotenv
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,16 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-load_dotenv()
-SECRET_KEY = os.getenv("SECRET_KEY")
-EMAIL_PASSWORD = os.getenv("HOST_PASSWORD")
+SECRET_KEY = config("SECRET_KEY", cast=str)
+EMAIL_PASSWORD = config("HOST_PASSWORD", cast=str)
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Settings for deployment.
 DEBUG = False
 
-ALLOWED_HOSTS = ['realstatedeploy77.pythonanywhere.com']
+ALLOWED_HOSTS = ['realstatedeploy77.pythonanywhere.com', '.vercel.app']
 
 SECURE_SSL_REDIRECT = True
 
@@ -93,12 +92,22 @@ WSGI_APPLICATION = 'real_state.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+DATABASE_URL = config('DATABASE_URL', cast=str)
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=120,
+            conn_health_checks=True,
+            ),
     }
 }
+
+DATABASES['default'] = dj_database_url.config(
+        default=DATABASE_URL,
+        conn_max_age=120,
+        conn_health_checks=True)
 
 
 # Password validation
