@@ -7,4 +7,4 @@ echo "Building the project..."
 pip install -r requirements.txt
 
 # Collect static files
-python manage.py collectstatic --noinput --clear
+python3.9 manage.py collectstatic --noinput
