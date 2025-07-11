@@ -30,7 +30,7 @@ EMAIL_PASSWORD = config("HOST_PASSWORD", cast=str)
 # Settings for deployment.
 DEBUG = False
 
-ALLOWED_HOSTS = ['realstatedeploy77.pythonanywhere.com', '.vercel.app']
+ALLOWED_HOSTS = ['realstatedeploy77.pythonanywhere.com', '.vercel.app', '.now.sh']
 
 SECURE_SSL_REDIRECT = True
 
@@ -157,7 +157,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
