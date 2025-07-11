@@ -95,7 +95,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'real_state.wsgi.application'
+WSGI_APPLICATION = 'real_state.wsgi.app'
 
 
 # Database
